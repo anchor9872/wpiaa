@@ -1,6 +1,7 @@
 ﻿using launcher.c1;
 using launcher.c6.SingletonVault;
 using launcher.c6.Factory;
+using launcher.c6.Builder;
 
 // ------------------------------------------------------------------------------------------------------------
 // ------------------------------------------   CODE SMELLS      ----------------------------------------------
@@ -252,39 +253,52 @@ using launcher.c6.Factory;
 // Factory
 // ------------------------
 
-Garnizon garnizon = new Garnizon();
+// Garnizon garnizon = new Garnizon();
+//
+// Wojownik[] wojownicy =
+// {
+//     garnizon.WyszkolWojownika("piechur", "piechur1"),
+//     garnizon.WyszkolWojownika("piechur", "piechur2"),
+//     garnizon.WyszkolWojownika("piechur", "piechur3"),
+//
+//     garnizon.WyszkolWojownika("konny", "konny1"),
+//     garnizon.WyszkolWojownika("konny", "konny2"),
+//     garnizon.WyszkolWojownika("konny", "konny3"),
+//
+//     garnizon.WyszkolWojownika("strzelec", "strzelec1"),
+//     garnizon.WyszkolWojownika("strzelec", "strzelec2"),
+//     garnizon.WyszkolWojownika("strzelec", "strzelec3"),
+//     garnizon.WyszkolWojownika("strzelec", "strzelec4")
+// };
+//
+// foreach (var woj in wojownicy)
+// {
+//     woj.Fight();
+// }
 
-Wojownik[] wojownicy =
-{
-    garnizon.WyszkolWojownika("piechur", "piechur1"),
-    garnizon.WyszkolWojownika("piechur", "piechur2"),
-    garnizon.WyszkolWojownika("piechur", "piechur3"),
+// ------------------------
+// Builder
+// ------------------------
 
-    garnizon.WyszkolWojownika("konny", "konny1"),
-    garnizon.WyszkolWojownika("konny", "konny2"),
-    garnizon.WyszkolWojownika("konny", "konny3"),
+var builderGarnizon = new launcher.c6.Builder.Garnizon();
 
-    garnizon.WyszkolWojownika("strzelec", "strzelec1"),
-    garnizon.WyszkolWojownika("strzelec", "strzelec2"),
-    garnizon.WyszkolWojownika("strzelec", "strzelec3"),
-    garnizon.WyszkolWojownika("strzelec", "strzelec4")
-};
+var armia = new List<Wojownik>();
 
-foreach (var woj in wojownicy)
+var piechurBuilder = new PiechurBuilder();
+var konnyBuilder = new KonnyBuilder();
+var strzelecBuilder = new StrzelecBuilder();
+
+armia.Add(builderGarnizon.WyszkolWojownika(piechurBuilder, "piechur1"));
+armia.Add(builderGarnizon.WyszkolWojownika(piechurBuilder, "piechur2"));
+
+armia.Add(builderGarnizon.WyszkolWojownika(konnyBuilder, "konny1"));
+armia.Add(builderGarnizon.WyszkolWojownika(konnyBuilder, "konny2"));
+
+armia.Add(builderGarnizon.WyszkolWojownika(strzelecBuilder, "strzelec1"));
+armia.Add(builderGarnizon.WyszkolWojownika(strzelecBuilder, "strzelec2"));
+
+foreach (var woj in armia)
 {
     woj.Fight();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
