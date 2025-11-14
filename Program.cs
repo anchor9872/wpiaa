@@ -2,6 +2,7 @@
 using launcher.c6.SingletonVault;
 using launcher.c6.Factory;
 using launcher.c6.Builder;
+using launcher.c6.Prototype;
 
 // ------------------------------------------------------------------------------------------------------------
 // ------------------------------------------   CODE SMELLS      ----------------------------------------------
@@ -280,25 +281,43 @@ using launcher.c6.Builder;
 // Builder
 // ------------------------
 
-var builderGarnizon = new launcher.c6.Builder.Garnizon();
+// var builderGarnizon = new launcher.c6.Builder.Garnizon();
+//
+// var armia = new List<Wojownik>();
+//
+// var piechurBuilder = new PiechurBuilder();
+// var konnyBuilder = new KonnyBuilder();
+// var strzelecBuilder = new StrzelecBuilder();
+//
+// armia.Add(builderGarnizon.WyszkolWojownika(piechurBuilder, "piechur1"));
+// armia.Add(builderGarnizon.WyszkolWojownika(piechurBuilder, "piechur2"));
+//
+// armia.Add(builderGarnizon.WyszkolWojownika(konnyBuilder, "konny1"));
+// armia.Add(builderGarnizon.WyszkolWojownika(konnyBuilder, "konny2"));
+//
+// armia.Add(builderGarnizon.WyszkolWojownika(strzelecBuilder, "strzelec1"));
+// armia.Add(builderGarnizon.WyszkolWojownika(strzelecBuilder, "strzelec2"));
+//
+// foreach (var woj in armia)
+// {
+//     woj.Fight();
+// }
 
-var armia = new List<Wojownik>();
+// ------------------------
+// Prototype
+// ------------------------
 
-var piechurBuilder = new PiechurBuilder();
-var konnyBuilder = new KonnyBuilder();
-var strzelecBuilder = new StrzelecBuilder();
+var orcs = new List<Ork>();
 
-armia.Add(builderGarnizon.WyszkolWojownika(piechurBuilder, "piechur1"));
-armia.Add(builderGarnizon.WyszkolWojownika(piechurBuilder, "piechur2"));
+var og = new Ork(20, 50);
 
-armia.Add(builderGarnizon.WyszkolWojownika(konnyBuilder, "konny1"));
-armia.Add(builderGarnizon.WyszkolWojownika(konnyBuilder, "konny2"));
-
-armia.Add(builderGarnizon.WyszkolWojownika(strzelecBuilder, "strzelec1"));
-armia.Add(builderGarnizon.WyszkolWojownika(strzelecBuilder, "strzelec2"));
-
-foreach (var woj in armia)
+for (int i = 0; i < 5; i++)
 {
-    woj.Fight();
+    Ork clone = og.Clone();
+    orcs.Add(clone);
 }
 
+foreach (var o in orcs)
+{
+    Console.WriteLine(o.ToString());
+}
