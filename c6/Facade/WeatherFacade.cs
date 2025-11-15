@@ -5,10 +5,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-public class WeatherInfo
-{
-    public required string Temperature { get; set; }
-}
 public class WeatherFacade
 {
     public static async Task<WeatherInfo> GetWeather(string city)
