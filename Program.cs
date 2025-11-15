@@ -255,7 +255,7 @@ using launcher.c6.Prototype;
 // Factory
 // ------------------------
 
-// Garnizon garnizon = new Garnizon();
+// var garnizon = new launcher.c6.Factory.Garnizon();
 //
 // Wojownik[] wojownicy =
 // {

@@ -11,11 +11,11 @@ public class KonnyBuilder: WarriorBuilder
 
     public override void AddWeapons()
     {
-        Console.WriteLine($"{wojownik.Name} dostaje bron konnego");
+        Console.WriteLine($"{wojownik!.Name} dostaje bron konnego");
     }
 
     public override void TrainCombat()
     {
-        Console.WriteLine($"{wojownik.Name} trenuje walke konno");
+        Console.WriteLine($"{wojownik!.Name} trenuje walke konno");
     }
 }

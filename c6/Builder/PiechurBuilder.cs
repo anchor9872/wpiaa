@@ -11,11 +11,11 @@ public class PiechurBuilder: WarriorBuilder
 
     public override void AddWeapons()
     {
-        Console.WriteLine($"{wojownik.Name} dostaje miecz i tarczę");
+        Console.WriteLine($"{wojownik!.Name} dostaje miecz i tarczę");
     }
 
     public override void TrainCombat()
     {
-        Console.WriteLine($"{wojownik.Name} trenuje walke wrecz");
+        Console.WriteLine($"{wojownik!.Name} trenuje walke wrecz");
     }
 }

@@ -11,11 +11,11 @@ public class StrzelecBuilder: WarriorBuilder
 
     public override void AddWeapons()
     {
-        Console.WriteLine($"{wojownik.Name} dostaje łuk");
+        Console.WriteLine($"{wojownik!.Name} dostaje łuk");
     }
 
     public override void TrainCombat()
     {
-        Console.WriteLine($"{wojownik.Name} strzela do tarcz");
+        Console.WriteLine($"{wojownik!.Name} strzela do tarcz");
     }
 }

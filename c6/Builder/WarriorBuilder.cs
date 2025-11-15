@@ -4,10 +4,10 @@ using launcher.c6.Factory;
 
 public abstract class WarriorBuilder
 {
-    protected Wojownik wojownik;
+    protected Wojownik? wojownik;
 
     // Gets sandwich instance
-    public Wojownik GetWojownik() => wojownik;
+    public Wojownik GetWojownik() => wojownik ?? throw new InvalidOperationException("warrior not created yet");
 
     // Abstract build methods
     public abstract void CreateWarrior(string name);

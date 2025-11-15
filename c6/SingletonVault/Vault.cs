@@ -2,8 +2,8 @@ namespace launcher.c6.SingletonVault;
 
 public class Vault
 {
-        private static Vault vaultConnection;
-        private static object syncRoot = new Object();
+        private static Vault? _vaultConnection;
+        private static object _syncRoot = new Object();
         private Vault()
         {
         }
@@ -12,15 +12,15 @@ public class Vault
         {
             get
             {
-                lock(syncRoot)
+                lock(_syncRoot)
                 {
-                    if(vaultConnection == null)
+                    if(_vaultConnection == null)
                     {
-                        vaultConnection = new Vault();
+                        _vaultConnection = new Vault();
                     }
                 }
 
-                return vaultConnection;
+                return _vaultConnection;
             }
         }
 
