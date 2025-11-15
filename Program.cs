@@ -2,6 +2,7 @@
 using launcher.c6.SingletonVault;
 using launcher.c6.Factory;
 using launcher.c6.Builder;
+using launcher.c6.Facade;
 using launcher.c6.Prototype;
 
 // ------------------------------------------------------------------------------------------------------------
@@ -307,17 +308,31 @@ using launcher.c6.Prototype;
 // Prototype
 // ------------------------
 
-var orcs = new List<Ork>();
+// var orcs = new List<Ork>();
+//
+// var og = new Ork(20, 50);
+//
+// for (int i = 0; i < 5; i++)
+// {
+//     Ork clone = og.Clone();
+//     orcs.Add(clone);
+// }
+//
+// foreach (var o in orcs)
+// {
+//     Console.WriteLine(o.ToString());
+// }
 
-var og = new Ork(20, 50);
+// ------------------------
+// Facade
+// ------------------------
 
-for (int i = 0; i < 5; i++)
+var city = "";
+while (string.IsNullOrEmpty(city))
 {
-    Ork clone = og.Clone();
-    orcs.Add(clone);
+    Console.Write("podaj miasto: ");
+    city = Console.ReadLine();
 }
 
-foreach (var o in orcs)
-{
-    Console.WriteLine(o.ToString());
-}
+var temp = await WeatherFacade.GetWeather(city);
+Console.Write($"Temperatura w {city}: {temp.Temperature} Celcius\n");
