@@ -1,4 +1,5 @@
 ﻿using launcher.c1;
+using launcher.c6.Adapter;
 using launcher.c6.SingletonVault;
 using launcher.c6.Factory;
 using launcher.c6.Builder;
@@ -342,42 +343,56 @@ using launcher.c6.Proxy;
 // Proxy
 // ------------------------
 
-var fileAccess = new FileAccessProxy();
+// var fileAccess = new FileAccessProxy();
+//
+// var appLoop = true;
+// while (appLoop)
+// {
+//     Console.WriteLine("Dostępne pliki: ");
+//     Console.WriteLine("1. publiczny_plik.txt");
+//     Console.WriteLine("2. tajny_plik1.xls");
+//     Console.WriteLine("3. tajny_plik2.pdf");
+//     Console.WriteLine("4. Wyjście");
+//     Console.Write("Wybierz plik do pobrania (1-4): ");
+//
+//     var choice = Console.ReadLine() ?? "";
+//     var fileName = "";
+//     switch (choice)
+//     {
+//         case "1":
+//             fileName = "publiczny_plik.txt";
+//             break;
+//         case "2":
+//             fileName = "tajny_plik1.xls";
+//             break;
+//         case "3":
+//             fileName = "tajny_plik2.pdf";
+//             break;
+//         case "4":
+//             appLoop = false;
+//             break;
+//         default:
+//             Console.WriteLine("Nieprawidlowa wartosc.");
+//             continue; 
+//     }
+//     if (!appLoop) break;
+//
+//     Console.WriteLine($"\nPróba porbania: '{fileName}'");
+//     var result = fileAccess.GetFile(fileName);
+//     Console.WriteLine($"\n{result}");
+//     Console.WriteLine("-------------------------------------");
+// }
 
-var appLoop = true;
-while (appLoop)
-{
-    Console.WriteLine("Dostępne pliki: ");
-    Console.WriteLine("1. publiczny_plik.txt");
-    Console.WriteLine("2. tajny_plik1.xls");
-    Console.WriteLine("3. tajny_plik2.pdf");
-    Console.WriteLine("4. Wyjście");
-    Console.Write("Wybierz plik do pobrania (1-4): ");
+// ------------------------
+// Adapter
+// ------------------------
 
-    var choice = Console.ReadLine() ?? "";
-    var fileName = "";
-    switch (choice)
-    {
-        case "1":
-            fileName = "publiczny_plik.txt";
-            break;
-        case "2":
-            fileName = "tajny_plik1.xls";
-            break;
-        case "3":
-            fileName = "tajny_plik2.pdf";
-            break;
-        case "4":
-            appLoop = false;
-            break;
-        default:
-            Console.WriteLine("Nieprawidlowa wartosc.");
-            continue; 
-    }
-    if (!appLoop) break;
+var club = new Club();
 
-    Console.WriteLine($"\nPróba porbania: '{fileName}'");
-    var result = fileAccess.GetFile(fileName);
-    Console.WriteLine($"\n{result}");
-    Console.WriteLine("-------------------------------------");
-}
+var krzysiu1 = new Adult("Krzysiu", 17);
+club.CheckEntry(krzysiu1);
+
+Console.WriteLine();
+
+var krzysiu2 = new FakeAdult("Krzysiu", 17);
+club.CheckEntry(krzysiu2);
