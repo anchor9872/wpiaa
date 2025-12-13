@@ -6,6 +6,8 @@ using launcher.c6.Builder;
 using launcher.c6.Facade;
 using launcher.c6.Prototype;
 using launcher.c6.Proxy;
+using launcher.c6.Bridge;
+
 
 // ------------------------------------------------------------------------------------------------------------
 // ------------------------------------------   CODE SMELLS      ----------------------------------------------
@@ -387,12 +389,30 @@ using launcher.c6.Proxy;
 // Adapter
 // ------------------------
 
-var club = new Club();
+// var club = new Club();
+//
+// var krzysiu1 = new Adult("Krzysiu", 17);
+// club.CheckEntry(krzysiu1);
+//
+// Console.WriteLine();
+//
+// var krzysiu2 = new FakeAdult("Krzysiu", 17);
+// club.CheckEntry(krzysiu2);
 
-var krzysiu1 = new Adult("Krzysiu", 17);
-club.CheckEntry(krzysiu1);
+// ------------------------
+// Bridhe
+// ------------------------
 
-Console.WriteLine();
+OperationSystem linux = new LinuxSystem();
+linux._ui = new GraphicInterface();
+linux.PressMenuButton();
 
-var krzysiu2 = new FakeAdult("Krzysiu", 17);
-club.CheckEntry(krzysiu2);
+linux._ui = new TextInterface();
+linux.PressMenuButton();
+
+OperationSystem windows = new WindowsSystem();
+windows._ui = new GraphicInterface();
+windows.PressMenuButton();
+
+Console.ReadKey();
+
