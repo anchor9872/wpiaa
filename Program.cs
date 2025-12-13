@@ -7,6 +7,7 @@ using launcher.c6.Facade;
 using launcher.c6.Prototype;
 using launcher.c6.Proxy;
 using launcher.c6.Bridge;
+using launcher.c6.Decorator;
 
 
 // ------------------------------------------------------------------------------------------------------------
@@ -403,16 +404,28 @@ using launcher.c6.Bridge;
 // Bridhe
 // ------------------------
 
-OperationSystem linux = new LinuxSystem();
-linux._ui = new GraphicInterface();
-linux.PressMenuButton();
+// OperationSystem linux = new LinuxSystem();
+// linux._ui = new GraphicInterface();
+// linux.PressMenuButton();
+//
+// linux._ui = new TextInterface();
+// linux.PressMenuButton();
+//
+// OperationSystem windows = new WindowsSystem();
+// windows._ui = new GraphicInterface();
+// windows.PressMenuButton();
+//
+// Console.ReadKey();
 
-linux._ui = new TextInterface();
-linux.PressMenuButton();
 
-OperationSystem windows = new WindowsSystem();
-windows._ui = new GraphicInterface();
-windows.PressMenuButton();
+// ------------------------
+// Decorator
+// ------------------------
+
+var myShop = new Shop();
+
+myShop.MakePurchase("gotowka", 50.00);
+myShop.MakePurchase("karta", 250.00);
 
 Console.ReadKey();
 
