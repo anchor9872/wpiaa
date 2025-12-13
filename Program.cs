@@ -8,7 +8,7 @@ using launcher.c6.Prototype;
 using launcher.c6.Proxy;
 using launcher.c6.Bridge;
 using launcher.c6.Decorator;
-
+using launcher.c6.Composite;
 
 // ------------------------------------------------------------------------------------------------------------
 // ------------------------------------------   CODE SMELLS      ----------------------------------------------
@@ -422,10 +422,36 @@ using launcher.c6.Decorator;
 // Decorator
 // ------------------------
 
-var myShop = new Shop();
+// var myShop = new Shop();
+//
+// myShop.MakePurchase("gotowka", 50.00);
+// myShop.MakePurchase("karta", 250.00);
+//
+// Console.ReadKey();
 
-myShop.MakePurchase("gotowka", 50.00);
-myShop.MakePurchase("karta", 250.00);
 
-Console.ReadKey();
+// ------------------------
+// Composite
+// ------------------------
+
+MenuCategory mainMenu = new MenuCategory("Główne Menu");
+
+MenuCategory breakfast = new MenuCategory("Śniadania");
+breakfast.AddComponent(new Dish("Jajecznica", 15.00));
+breakfast.AddComponent(new Dish("Owsianka", 12.50));
+
+MenuCategory dinner = new MenuCategory("Obiady");
+        
+MenuCategory soups = new MenuCategory("Zupy");
+soups.AddComponent(new Dish("Rosół", 18.00));
+soups.AddComponent(new Dish("Pomidorowa", 19.00));
+
+dinner.AddComponent(soups); 
+dinner.AddComponent(new Dish("Schabowy", 35.00));
+
+mainMenu.AddComponent(breakfast);
+mainMenu.AddComponent(dinner);
+mainMenu.AddComponent(new Dish("Woda Niegazowana", 5.00));
+
+mainMenu.DisplayMenu(0);
 
