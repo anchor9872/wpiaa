@@ -9,6 +9,8 @@ using launcher.c6.Proxy;
 using launcher.c6.Bridge;
 using launcher.c6.Decorator;
 using launcher.c6.Composite;
+using launcher.c6.Flyweight;
+
 
 // ------------------------------------------------------------------------------------------------------------
 // ------------------------------------------   CODE SMELLS      ----------------------------------------------
@@ -434,24 +436,47 @@ using launcher.c6.Composite;
 // Composite
 // ------------------------
 
-MenuCategory mainMenu = new MenuCategory("Główne Menu");
+// MenuCategory mainMenu = new MenuCategory("Główne Menu");
+//
+// MenuCategory breakfast = new MenuCategory("Śniadania");
+// breakfast.AddComponent(new Dish("Jajecznica", 15.00));
+// breakfast.AddComponent(new Dish("Owsianka", 12.50));
+//
+// MenuCategory dinner = new MenuCategory("Obiady");
+//         
+// MenuCategory soups = new MenuCategory("Zupy");
+// soups.AddComponent(new Dish("Rosół", 18.00));
+// soups.AddComponent(new Dish("Pomidorowa", 19.00));
+//
+// dinner.AddComponent(soups); 
+// dinner.AddComponent(new Dish("Schabowy", 35.00));
+//
+// mainMenu.AddComponent(breakfast);
+// mainMenu.AddComponent(dinner);
+// mainMenu.AddComponent(new Dish("Woda Niegazowana", 5.00));
+//
+// mainMenu.DisplayMenu(0);
 
-MenuCategory breakfast = new MenuCategory("Śniadania");
-breakfast.AddComponent(new Dish("Jajecznica", 15.00));
-breakfast.AddComponent(new Dish("Owsianka", 12.50));
 
-MenuCategory dinner = new MenuCategory("Obiady");
-        
-MenuCategory soups = new MenuCategory("Zupy");
-soups.AddComponent(new Dish("Rosół", 18.00));
-soups.AddComponent(new Dish("Pomidorowa", 19.00));
+// ------------------------
+// Flyweight
+// ------------------------
 
-dinner.AddComponent(soups); 
-dinner.AddComponent(new Dish("Schabowy", 35.00));
+var factory = new TextureFactory();
 
-mainMenu.AddComponent(breakfast);
-mainMenu.AddComponent(dinner);
-mainMenu.AddComponent(new Dish("Woda Niegazowana", 5.00));
+var units = new List<GameUnit>();
 
-mainMenu.DisplayMenu(0);
+units.Add(new GameUnit(10, 20, "tree.png", factory));
+units.Add(new GameUnit(15, 30, "tree.png", factory)); 
+units.Add(new GameUnit(50, 50, "tree.png", factory));
 
+units.Add(new GameUnit(100, 100, "enemy.png", factory)); 
+units.Add(new GameUnit(120, 110, "enemy.png", factory)); 
+
+foreach (var unit in units)
+{
+    unit.Draw();
+}
+
+Console.WriteLine($"liczba obiektów w grze: {units.Count}");
+Console.WriteLine($"liczba tekstur w pamięci: {factory.GetTotalTexturesLoaded()}");
