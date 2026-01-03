@@ -10,6 +10,7 @@ using launcher.c6.Bridge;
 using launcher.c6.Decorator;
 using launcher.c6.Composite;
 using launcher.c6.Flyweight;
+using launcher.c6.Command;
 
 
 // ------------------------------------------------------------------------------------------------------------
@@ -462,21 +463,48 @@ using launcher.c6.Flyweight;
 // Flyweight
 // ------------------------
 
-var factory = new TextureFactory();
+// var factory = new TextureFactory();
+//
+// var units = new List<GameUnit>();
+//
+// units.Add(new GameUnit(10, 20, "tree.png", factory));
+// units.Add(new GameUnit(15, 30, "tree.png", factory)); 
+// units.Add(new GameUnit(50, 50, "tree.png", factory));
+//
+// units.Add(new GameUnit(100, 100, "enemy.png", factory)); 
+// units.Add(new GameUnit(120, 110, "enemy.png", factory)); 
+//
+// foreach (var unit in units)
+// {
+//     unit.Draw();
+// }
+//
+// Console.WriteLine($"liczba obiektów w grze: {units.Count}");
+// Console.WriteLine($"liczba tekstur w pamięci: {factory.GetTotalTexturesLoaded()}");
 
-var units = new List<GameUnit>();
 
-units.Add(new GameUnit(10, 20, "tree.png", factory));
-units.Add(new GameUnit(15, 30, "tree.png", factory)); 
-units.Add(new GameUnit(50, 50, "tree.png", factory));
+// ------------------------
+// Command
+// ------------------------
 
-units.Add(new GameUnit(100, 100, "enemy.png", factory)); 
-units.Add(new GameUnit(120, 110, "enemy.png", factory)); 
+var helper = new SantasHelper();
 
-foreach (var unit in units)
-{
-    unit.Draw();
-}
+helper.SetCommand(1 /* MakeToy */);
+helper.SetGift(new Gift("Samochodzik"));
+helper.ExecuteCommand();
 
-Console.WriteLine($"liczba obiektów w grze: {units.Count}");
-Console.WriteLine($"liczba tekstur w pamięci: {factory.GetTotalTexturesLoaded()}");
+helper.SetCommand(1 /* MakeToy */);
+helper.SetGift(new Gift("Lalka"));
+helper.ExecuteCommand();
+
+helper.SetCommand(1  /* MakeToy */);
+helper.SetGift(new Gift("Klocki LEGO"));
+helper.ExecuteCommand();
+
+helper.SetCommand(2 /* MakeStick */);
+helper.SetGift(new Gift("Rózga"));
+helper.ExecuteCommand();
+
+helper.ShowProducedItems();
+
+Console.ReadKey();
