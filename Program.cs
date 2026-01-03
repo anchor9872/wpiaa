@@ -11,6 +11,7 @@ using launcher.c6.Decorator;
 using launcher.c6.Composite;
 using launcher.c6.Flyweight;
 using launcher.c6.Command;
+using launcher.c6.Strategy;
 
 
 // ------------------------------------------------------------------------------------------------------------
@@ -487,24 +488,62 @@ using launcher.c6.Command;
 // Command
 // ------------------------
 
-var helper = new SantasHelper();
+// var helper = new SantasHelper();
+//
+// helper.SetCommand(1 /* MakeToy */);
+// helper.SetGift(new Gift("Samochodzik"));
+// helper.ExecuteCommand();
+//
+// helper.SetCommand(1 /* MakeToy */);
+// helper.SetGift(new Gift("Lalka"));
+// helper.ExecuteCommand();
+//
+// helper.SetCommand(1  /* MakeToy */);
+// helper.SetGift(new Gift("Klocki LEGO"));
+// helper.ExecuteCommand();
+//
+// helper.SetCommand(2 /* MakeStick */);
+// helper.SetGift(new Gift("Rózga"));
+// helper.ExecuteCommand();
+//
+// helper.ShowProducedItems();
+//
+// Console.ReadKey();
 
-helper.SetCommand(1 /* MakeToy */);
-helper.SetGift(new Gift("Samochodzik"));
-helper.ExecuteCommand();
+// ------------------------
+// Strategy
+// ------------------------
 
-helper.SetCommand(1 /* MakeToy */);
-helper.SetGift(new Gift("Lalka"));
-helper.ExecuteCommand();
+var editor = new SearchStrategy();
 
-helper.SetCommand(1  /* MakeToy */);
-helper.SetGift(new Gift("Klocki LEGO"));
-helper.ExecuteCommand();
+Console.Write("Podaj temat/opis zdjęcia, którego szukasz: ");
+var topic = Console.ReadLine();
+if (string.IsNullOrWhiteSpace(topic))
+{
+    Console.WriteLine("Nie podano szukanej frazy.");
+    return;
+}
 
-helper.SetCommand(2 /* MakeStick */);
-helper.SetGift(new Gift("Rózga"));
-helper.ExecuteCommand();
-
-helper.ShowProducedItems();
-
-Console.ReadKey();
+Console.WriteLine("\nWybierz bazę zdjęć (0-2):");
+Console.WriteLine("1. Pexels");
+Console.WriteLine("2. Pixabay");
+Console.WriteLine("0. Wyjście");
+                
+var key = Console.ReadKey().KeyChar;
+Console.WriteLine();
+switch (key)
+{
+    case '1':
+        editor.SetSearchStrategy(new PexelsStrategy());
+        await editor.FindPhotos(topic);
+        break;
+    case '2':
+        editor.SetSearchStrategy(new PixabayStrategy());
+        await editor.FindPhotos(topic);
+        break;
+    case '0':
+        return;
+    default:
+        Console.WriteLine("nieznana opcja");
+        break;
+}
