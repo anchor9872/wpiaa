@@ -12,6 +12,7 @@ using launcher.c6.Composite;
 using launcher.c6.Flyweight;
 using launcher.c6.Command;
 using launcher.c6.Strategy;
+using launcher.c6.Observer;
 
 
 // ------------------------------------------------------------------------------------------------------------
@@ -514,36 +515,61 @@ using launcher.c6.Strategy;
 // Strategy
 // ------------------------
 
-var editor = new SearchStrategy();
+// var editor = new SearchStrategy();
+//
+// Console.Write("Podaj temat/opis zdjęcia, którego szukasz: ");
+// var topic = Console.ReadLine();
+// if (string.IsNullOrWhiteSpace(topic))
+// {
+//     Console.WriteLine("Nie podano szukanej frazy.");
+//     return;
+// }
+//
+// Console.WriteLine("\nWybierz bazę zdjęć (0-2):");
+// Console.WriteLine("1. Pexels");
+// Console.WriteLine("2. Pixabay");
+// Console.WriteLine("0. Wyjście");
+//                 
+// var key = Console.ReadKey().KeyChar;
+// Console.WriteLine();
+// switch (key)
+// {
+//     case '1':
+//         editor.SetSearchStrategy(new PexelsStrategy());
+//         await editor.FindPhotos(topic);
+//         break;
+//     case '2':
+//         editor.SetSearchStrategy(new PixabayStrategy());
+//         await editor.FindPhotos(topic);
+//         break;
+//     case '0':
+//         return;
+//     default:
+//         Console.WriteLine("nieznana opcja");
+//         break;
+// }
 
-Console.Write("Podaj temat/opis zdjęcia, którego szukasz: ");
-var topic = Console.ReadLine();
-if (string.IsNullOrWhiteSpace(topic))
-{
-    Console.WriteLine("Nie podano szukanej frazy.");
-    return;
-}
+// ------------------------
+// Observer
+// ------------------------
 
-Console.WriteLine("\nWybierz bazę zdjęć (0-2):");
-Console.WriteLine("1. Pexels");
-Console.WriteLine("2. Pixabay");
-Console.WriteLine("0. Wyjście");
-                
-var key = Console.ReadKey().KeyChar;
+var lecturer = new Lecturer();
+
+var s1 = new launcher.c6.Observer.Student(1234);
+var s2 = new launcher.c6.Observer.Student(9876);
+var s3 = new launcher.c6.Observer.Student(4567);
+
+lecturer.SignStudentForExamResults(s1);
+lecturer.SignStudentForExamResults(s2);
+lecturer.SignStudentForExamResults(s3);
+
 Console.WriteLine();
-switch (key)
-{
-    case '1':
-        editor.SetSearchStrategy(new PexelsStrategy());
-        await editor.FindPhotos(topic);
-        break;
-    case '2':
-        editor.SetSearchStrategy(new PixabayStrategy());
-        await editor.FindPhotos(topic);
-        break;
-    case '0':
-        return;
-    default:
-        Console.WriteLine("nieznana opcja");
-        break;
-}
+lecturer.GradeStudent(s1, true);  
+lecturer.GradeStudent(s2, false); 
+
+lecturer.AnnounceResults();
+
+Console.ReadKey();
+
+
+
